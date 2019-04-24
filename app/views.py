@@ -10,8 +10,7 @@ from .models import Message
 def index():
     form = MessageForm()
     if request.method == 'GET':
-        all_posts = db.session.query(Message).all()
-        print([(i.id, i.author, i.content) for i in all_posts])
+        all_posts = Message.query.order_by(Message.created_at.desc()).all()
         return render_template('index.html', form=form, messages=all_posts)
 
     if form.validate_on_submit():
