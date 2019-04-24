@@ -10,9 +10,10 @@
     {{ form.submit }}
     <br><br>
     {% for message in messages %}
-        '{{ message.content }}' 
-        from {{ message.author }} at {{ message.created_at.strftime('%Y-%m-%d %H:%M:%S') }}
-        <br><br>
+        {{ message.author }} {{ moment(message.created_at).fromNow(refresh=True) }}
+        <br>
+        '{{ message.content }}'
+        <br><br> 
     {%endfor %}
 </form>
 {% endblock %}
