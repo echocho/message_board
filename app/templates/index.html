@@ -1,20 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="POST" action="/">
+<form method="POST" action="{{ request.full_path }}" align='middle'>
     {{ form.hidden_tag() }}
     {{ form.name.label }} {{ form.name(size=20) }}
-    <br>
+    <br><br>
     {{ form.message.label }} {{ form.message(size=100) }}
-    <br>
+    <br><br>
     {{ form.submit }}
-    <br>
-    <br>
+    <br><br>
     {% for message in messages %}
         '{{ message.content }}' 
         from {{ message.author }} at {{ message.created_at.strftime('%Y-%m-%d %H:%M:%S') }}
-        <br>
-        <br>
+        <br><br>
     {%endfor %}
 </form>
 {% endblock %}

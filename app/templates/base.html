@@ -9,9 +9,14 @@
         <title>{% block title %} Message Board {% endblock %}</title>
     </head>
     <body>
-        <h1>Message Board</h1>
+        <h1 align="middle">Message Board</h1>
+        <h2 align="middle">Post whatever you want!</h2>
         <br>
         {% block content %}{% endblock %}
+        {%for message in get_flashed_messages() %}
+            {{message}}
+        {% endfor %}
+
     </body>
     
 </html>
