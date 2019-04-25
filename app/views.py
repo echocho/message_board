@@ -18,7 +18,6 @@ def index():
         msg = request.values.get('message')
         if author and msg:
             new_record = Message(author=author, content=msg)
-            print('new_record', new_record)
             db.session.add(new_record)
             db.session.commit()
             flash('message posted!')
