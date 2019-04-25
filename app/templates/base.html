@@ -9,6 +9,17 @@
         {{ moment.include_jquery() }}
         {{ moment.include_moment() }}
     </head>
+    <style>
+        body {background-color:white; text-align:center;}
+        h1 {color:cornflowerblue; font-size:40px; font-family:chalkboard;}
+        h2 {color:coral; font-size:30px; font-family:chalkboard;}
+        p1 {color:darksalmon; font-size:20px; font-family:ayuthaya;}
+        p {color:darkkhaki; font-family:ayuthaya; font-size:20px;}
+        form {color:deepskyblue; font-size:25px; font-family:chalkboard;}
+        twenty_five {font-size: 25}
+    </style>
+            
+    <body>
     <body>
         <h1 align="middle">Message Board</h1>
         <h2 align="middle">Post whatever you want!</h2>
@@ -17,7 +28,6 @@
         {%for message in get_flashed_messages() %}
             {{message}}
         {% endfor %}
-
     </body>
     
 </html>

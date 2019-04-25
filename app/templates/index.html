@@ -5,14 +5,15 @@
     {{ form.hidden_tag() }}
     {{ form.name.label }} {{ form.name(size=20) }}
     <br><br>
-    {{ form.message.label }} {{ form.message(size=100) }}
+    {{ form.message.label }} {{ form.message(size=200) }}
     <br><br>
     {{ form.submit }}
     <br><br>
     {% for message in messages %}
-        {{ message.author }} {{ moment(message.created_at).fromNow(refresh=True) }}
-        <br>
-        '{{ message.content }}'
+        <p1>
+            {{ message.author }} {{ moment(message.created_at).fromNow(refresh=True) }}
+        </p1>
+        <p>'{{ message.content }}'</p>
         <br><br> 
     {%endfor %}
 </form>
