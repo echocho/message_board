@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+faker = "*"
 
 [packages]
 flask = "*"
@@ -12,6 +13,7 @@ psycopg2 = "*"
 flask-wtf = "*"
 flask-migrate = "*"
 flask-moment = "*"
+click = "*"
 
 [requires]
 python_version = "3.7"
