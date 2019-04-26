@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="A Crazily Simple Message Board">
-        <meta name="author" content="echocho">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %} Message Board {% endblock %}</title>
-        {{ moment.include_jquery() }}
-        {{ moment.include_moment() }}
-    </head>
-    <style>
-        body {background-color:white; text-align:center;}
-        h1 {color:cornflowerblue; font-size:40px; font-family:chalkboard;}
-        h2 {color:coral; font-size:30px; font-family:chalkboard;}
-        p1 {color:darksalmon; font-size:20px; font-family:ayuthaya;}
-        p {color:darkkhaki; font-family:ayuthaya; font-size:20px;}
-        form {color:deepskyblue; font-size:25px; font-family:chalkboard;}
-        twenty_five {font-size: 25}
-    </style>
-            
-    <body>
-    <body>
-        <h1 align="middle">Message Board</h1>
-        <h2 align="middle">Post whatever you want!</h2>
-        <br>
-        {% block content %}{% endblock %}
-        {%for message in get_flashed_messages() %}
-            {{message}}
-        {% endfor %}
-    </body>
-    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Share Your Thoughts{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+</head>
+<body>
+<main class="container">
+    <header>
+        <h1 class="text-center display-4">
+            <a href="{{ url_for('index') }}" class="text-success"><strong>Sharing</strong></a>
+            <small class="text-muted sub-title">is beliving</small>
+        </h1>
+    </header>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+    <footer class="text-center">
+        {% block footer %}
+            <p><a id="bottom" href="#" title="Go Top">&uarr;</a></p>
+        {% endblock %}
+    </footer>
+</main>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+{{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}
+</body>
 </html>

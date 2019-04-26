@@ -1,20 +1,30 @@
 {% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
 
 {% block content %}
-<form method="POST" action="{{ request.full_path }}" align='middle'>
-    {{ form.hidden_tag() }}
-    {{ form.name.label }} {{ form.name(size=20) }}
-    <br><br>
-    {{ form.message.label }} {{ form.message(size=200) }}
-    <br><br>
-    {{ form.submit }}
-    <br><br>
-    {% for message in messages %}
-        <p1>
-            {{ message.author }} {{ moment(message.created_at).fromNow(refresh=True) }}
-        </p1>
-        <p>'{{ message.content }}'</p>
-        <br><br> 
-    {%endfor %}
-</form>
+    <div class="_form">
+        {{ render_form(form, action=request.full_path) }}
+    </div>
+    <h5>{{ messages|length }} messages
+        <small class="float-right">
+            <a href="#bottom" title="Go Bottom">&darr;</a>
+        </small>
+    </h5>
+    <div class="list-group">
+        {% for message in messages %}
+            <a class="list-group-itpipeem list-group-item-action flex-column">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 text-success">{{ message.author }}
+                        <small class="text-muted"> #{{ loop.revindex }}</small>
+                    </h5>
+                    <small data-toggle="tooltip" data-placement="top"
+                           data-timestamp="{{ message.created_at.strftime('%Y-%m-%dT%H:%M:%SZ') }}"
+                           data-delay="500">
+                        {{ moment(message.created_at).fromNow(refresh=True) }}
+                    </small>
+                </div>
+                <p class="mb-1">{{ message.content }}</p>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}
